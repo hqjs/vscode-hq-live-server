@@ -1,0 +1,167 @@
+{
+  "name": "hq-live-server",
+  "displayName": "HQ Live Server",
+  "description": "Lightning fast, zero configuration, web application development server with livereload",
+  "publisher": "hqjs",
+  "version": "0.0.1",
+  "author": {
+    "name": "HQJS",
+    "email": "hqjs.org@gmail.com",
+    "url": "https://hqjs.org"
+  },
+  "engines": {
+    "vscode": "^1.36.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "web app preview",
+    "spa preview",
+    "react preview",
+    "angular preview",
+    "polymer preview",
+    "svelte preview",
+    "vue preview",
+    "html preview",
+    "live preview",
+    "live reload",
+    "web server",
+    "open in browser",
+    "multi-root ready"
+  ],
+  "galleryBanner": {
+    "color": "#333333",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.hqServer.stop",
+        "title": "Stop server",
+        "category": "HQ Live Server"
+      },
+      {
+        "command": "extension.hqServer.start",
+        "title": "Serve project",
+        "category": "HQ Live Server"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.hqServer.stop",
+        "key": "alt+H alt+C",
+        "when": "editorTextFocus",
+        "mac": "cmd+H cmd+C"
+      },
+      {
+        "command": "extension.hqServer.start",
+        "key": "alt+H alt+O",
+        "when": "editorTextFocus",
+        "mac": "cmd+H cmd+O"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.hqServer.stop",
+          "group": "hqGroup@hqServer"
+        },
+        {
+          "command": "extension.hqServer.start",
+          "group": "hqGroup@hqServer"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.hqServer.start",
+          "group": "navigation@-HQServer"
+        },
+        {
+          "command": "extension.hqServer.stop",
+          "group": "navigation@-HQServer"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "HQ Live Server",
+      "properties": {
+        "hqServer.defaultPort": {
+          "type": "number",
+          "default": 8080,
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "Set Custom Port Number of Live Server."
+        },
+        "hqServer.browser.useBuiltinBrowser": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open in Browser Preview inside VS Code, instead of default browser"
+        },
+        "hqServer.browser.preferredBrowser": {
+          "type": "string",
+          "default": "",
+          "enum": [
+            "chrome",
+            "chrome:PrivateMode",
+            "firefox",
+            "firefox:PrivateMode",
+            "safari",
+            "microsoft-edge",
+            "blisk",
+            ""
+          ],
+          "description": "Specify custom browser settings for HQ Live Server. \nBy Default it will open your default favorite browser."
+        },
+        "hqServer.browser.attachChromeDebugger": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Chrome Debugging Attachment to HQ Live Server at Debuging Port 9222.\n NOTE: You have to install 'Debugger for Chrome' \nIf the value is true, Select 'Attach to Chrome' from Debug Window to start debugging. \n\n NOTE: You have to chose Preferred Browser to be chrome or blisk to use debugger. \n\n CAUTION: If it is true, 'Launch Chrome against localhost' may not work."
+        },
+        "hqServer.browser.browserCmdLine": {
+          "type": "string",
+          "default": "",
+          "description": "Note: If it is not empty, It will override Preferred Browser and Attach Chrome Debugger settings.\n\n Examples : \nchrome --incognito --headless --remote-debugging-port=9222 \n C:\\\\Program Files\\\\Firefox Developer Edition\\\\firefox.exe --private-window"
+        },
+        "hqServer.showOnStatusbar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Change this to false if you don't want the button to show in the statusbar"
+        }
+      }
+    }
+  },
+  "icon": "images/hqjs.png",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hqjs/vscode-hq-live-server/issues",
+    "email": "hqjsorg@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hqjs/vscode-hq-live-server.git"
+  },
+  "homepage": "https://hqjs.org",
+  "scripts": {
+    "test": "node ./test/runTest.js"
+  },
+  "dependencies": {
+    "@hqjs/hq": "^0.0.12",
+    "open": "^6.4.0",
+    "vsls": "^0.3.1291"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.12.21",
+    "@types/vscode": "^1.36.0",
+    "eslint": "^6.2.2",
+    "glob": "^7.1.4",
+    "mocha": "^6.2.0",
+    "vscode-test": "^1.0.2"
+  }
+}

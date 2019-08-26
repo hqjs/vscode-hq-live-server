@@ -1,0 +1,16 @@
+environment:
+  ELECTRON_NO_ATTACH_CONSOLE: 1
+
+branches:
+    only:
+      - master
+
+install:
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 12.8)
+
+build_script:
+  - rm -fr package-lock.json
+  - npm install
+
+test_script:
+  - npm test
