@@ -29,7 +29,7 @@ install:
   - npm install
 
 script:
-  - if [ $TRAVIS_OS_NAME `1= "linux" ]; then
+  - if [ $TRAVIS_OS_NAME != "linux" ]; then
       npm test;
     fi
   - vsce package -o hq-live-server-$TRAVIS_TAG-$TRAVIS_OS_NAME.vsix
