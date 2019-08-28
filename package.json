@@ -147,7 +147,8 @@
   },
   "homepage": "https://hqjs.org",
   "scripts": {
-    "test": "node ./test/runTest.js"
+    "test": "node ./test/runTest.js",
+    "postinstall": "npm rebuild"
   },
   "dependencies": {
     "@hqjs/hq": "^0.0.12",

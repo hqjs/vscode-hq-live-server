@@ -28,7 +28,7 @@
 
 
 ## Features
-* A Quick Development Live Server with live browser reload.
+* A Quick [Development Live Server](https://hqjs.org) with live browser reload.
 * Quick start with any framework: Polymer, Svelte, Vue, React, Angular or plain js.
 * No configuration is required.
 * Start or Stop server by a single click from status bar.
