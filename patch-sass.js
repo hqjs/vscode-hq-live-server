@@ -10,3 +10,9 @@ fs.writeFileSync(
   postCSSNodeSass.replace('require(\'node-sass\')', 'require(\'sass\')'),
   { encoding: 'utf8' }
 );
+
+console.log('Patching postcss-node-sass package.json');
+const packageJSON = fs.readJSONSync('node_modules/postcss-node-sass/package.json');
+delete packageJSON.dependencies['node-sass'];
+packageJSON.dependencies['sass'] = '*';
+fs.writeFileSync('node_modules/postcss-node-sass/package.json', JSON.stringify(packageJSON), { encoding: 'utf8' });
