@@ -66,5 +66,5 @@ typings/
 # VSCode
 .vscode-test
 
-# No package-lock
-package-lock.json
+# Builds
+*.vsce
