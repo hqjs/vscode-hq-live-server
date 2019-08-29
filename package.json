@@ -148,7 +148,7 @@
   "homepage": "https://hqjs.org",
   "scripts": {
     "test": "node ./test/runTest.js",
-    "postinstall": "npm install sass && node ./patch-sass.js"
+    "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
     "@hqjs/hq": "^0.0.12",
