@@ -1,4 +1,4 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
+#!/usr/bin/env -S node --experimental-modules --no-warnings
 
 import process from 'process';
 import serve from '@hqjs/hq';

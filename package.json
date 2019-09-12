@@ -151,9 +151,9 @@
     "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
-    "@hqjs/hq": "^0.0.12",
+    "@hqjs/hq": "^0.0.13",
     "open": "^6.4.0",
-    "sass": "^1.22.10",
+    "sass": "^1.22.12",
     "vsls": "^0.3.1291"
   },
   "devDependencies": {
@@ -161,9 +161,9 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.12.21",
     "@types/vscode": "^1.36.0",
-    "eslint": "^6.2.2",
+    "eslint": "^6.3.0",
     "glob": "^7.1.4",
     "mocha": "^6.2.0",
-    "vscode-test": "^1.0.2"
+    "vscode-test": "^1.2.0"
   }
 }

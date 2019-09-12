@@ -9,7 +9,6 @@ class StatusbarUi {
       StatusbarUi.statusBarItem = window
         .createStatusBarItem(StatusBarAlignment.Right, PRIORITY);
 
-      // Show status bar only if user wants :)
       const showOnStatusbar = workspace.getConfiguration('hqServer').get('showOnStatusbar');
       if (showOnStatusbar) this.statusbar.show();
     }
@@ -38,6 +37,13 @@ class StatusbarUi {
     StatusbarUi.statusbar.command = 'extension.hqServer.stop';
     StatusbarUi.statusbar.tooltip = 'Click to stop hq live server';
     StatusbarUi.statusbar.color = 'lightgreen';
+  }
+
+  static disable() {
+    StatusbarUi.statusbar.text = '$(circle-slash) N/A';
+    StatusbarUi.statusbar.command = '';
+    StatusbarUi.statusbar.tooltip = 'Can\'t determine project root';
+    StatusbarUi.statusbar.color = 'lightgrey';
   }
 
   static dispose() {

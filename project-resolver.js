@@ -14,5 +14,5 @@ exports.getProject = workspaceFolders => {
     return activeProject;
   }
 
-  return workspaceFolders[0];
+  return null;
 };

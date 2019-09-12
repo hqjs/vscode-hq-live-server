@@ -4,10 +4,7 @@ const { openBrowser } = require('./open');
 const { spawn } = require('child_process');
 const { LiveShareController } = require('./live-share-controller');
 const path = require('path');
-
-// import { LiveServerHelper } from './live-server-helper';
 const StatusbarUi = require('./statusbar-ui');
-// import { Helper, SUPPRORTED_EXT } from './helper';
 
 exports.ServerController = class ServerController {
   constructor() {
@@ -15,16 +12,17 @@ exports.ServerController = class ServerController {
     const showOnStatusbar = workspace.getConfiguration('hqServer').get('showOnStatusbar');
     if (showOnStatusbar) {
       StatusbarUi.init();
-      this.documentChangeSubscription = window.onDidChangeActiveTextEditor(textEditor => {
+      this.documentChangeSubscription = window.onDidChangeActiveTextEditor(() => {
         const { workspaceFolders } = workspace;
-        if (!workspaceFolders) return;
+        if (!workspaceFolders) return StatusbarUi.disable();
         const activeProject = getProject(workspaceFolders);
-        if (!activeProject) return;
+        if (!activeProject) return StatusbarUi.disable();
 
         if (this.servers.has(activeProject.uri.fsPath)) {
           const { url } = this.servers.get(activeProject.uri.fsPath);
           StatusbarUi.stop(url);
         } else StatusbarUi.start();
+        return null;
       });
     }
   }
@@ -40,7 +38,7 @@ exports.ServerController = class ServerController {
     }
 
     const activeProject = getProject(workspaceFolders);
-    if (!activeProject) return null;
+    if (!activeProject) return StatusbarUi.disable();
 
     // if server is already running for this project, just open preview in a browser
     if (this.servers.has(activeProject.uri.fsPath)) {
@@ -61,23 +59,9 @@ exports.ServerController = class ServerController {
       }
     );
 
-    hq.stdout.on('data', data => {
-      console.log(`stdout: ${data}`);
-    });
+    hq.stdout.on('data', data => console.log(String(data)));
 
-    hq.stderr.on('data', console.error);
-
-    hq.on('close', code => {
-      console.log(`child process exited with code ${code}`);
-    });
-
-    hq.on('disconnect', () => {
-      console.log('connection lost');
-    });
-
-    hq.on('exit', code => {
-      console.log(`exit with code ${code}`);
-    });
+    hq.stderr.on('data', data => console.error(String(data)));
 
     hq.on('message', url => {
       const liveShareController = new LiveShareController;
