@@ -26,7 +26,7 @@ before_install:
 
 install:
   - npm i -g vsce
-  - npm install
+  - npm install --no-optional
 
 script:
   - if [ $TRAVIS_OS_NAME != "linux" ]; then

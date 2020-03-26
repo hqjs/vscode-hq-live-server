@@ -1,10 +1,12 @@
 const { window, workspace } = require('vscode');
 const { getProject } = require('./project-resolver');
 const { openBrowser } = require('./open');
+const path = require('path');
 const { spawn } = require('child_process');
 const { LiveShareController } = require('./live-share-controller');
-const path = require('path');
 const StatusbarUi = require('./statusbar-ui');
+
+/* eslint-disable no-magic-numbers */
 
 exports.ServerController = class ServerController {
   constructor() {
@@ -49,27 +51,58 @@ exports.ServerController = class ServerController {
 
     // otherwise start new server
     const defaultPort = workspace.getConfiguration('hqServer').get('defaultPort');
+    const projectPath = activeProject.uri.fsPath;
 
-    const hq = spawn(
-      path.join(__dirname, './run.mjs'),
-      [ activeProject.uri.fsPath, defaultPort ],
+    const nodeVersionProcess = spawn(
+      'node',
+      [ '--version' ],
       {
-        cwd: activeProject.uri.fsPath,
+        cwd: projectPath,
         stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ],
-      }
+      },
     );
 
-    hq.stdout.on('data', data => console.log(String(data)));
+    nodeVersionProcess.stdout.on('data', v => {
+      const version = String(v);
 
-    hq.stderr.on('data', data => console.error(String(data)));
+      const [ major, minor ] = version
+        .slice(1)
+        .split('.')
+        .map(x => Number(x));
 
-    hq.on('message', url => {
-      const liveShareController = new LiveShareController;
-      this.servers.set(activeProject.uri.fsPath, { hq, liveShareController, url });
-      StatusbarUi.stop(url);
-      liveShareController.share(activeProject.name, url);
-      openBrowser(url);
+      const jsonModules = major > 12 ||
+        (major === 12 && minor >= 13);
+
+      const args = [
+        '--no-warnings',
+        '--experimental-modules',
+      ];
+
+      if (jsonModules) args.push('--experimental-json-modules');
+
+      const hq = spawn(
+        'node',
+        [ ...args, path.join(__dirname, './run.mjs'), projectPath, defaultPort ],
+        {
+          cwd: projectPath,
+          stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ],
+        },
+      );
+
+      hq.stdout.on('data', data => console.log(String(data)));
+
+      hq.stderr.on('data', data => console.error(String(data)));
+
+      hq.on('message', url => {
+        const liveShareController = new LiveShareController;
+        this.servers.set(activeProject.uri.fsPath, { hq, liveShareController, url });
+        StatusbarUi.stop(url);
+        liveShareController.share(activeProject.name, url);
+        openBrowser(url);
+      });
     });
+
+    nodeVersionProcess.stderr.on('data', data => console.error(String(data)));
 
     return null;
   }

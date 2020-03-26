@@ -11,6 +11,20 @@
 
 ![Live Server Demo VSCode](./images/screen/hq-go-live.gif)
 
+## Features
+* A Quick [Development Live Server](https://hqjs.org) with live browser reload.
+* Quick start with any framework: `Polymer`, `Svelte`, `Vue`, `React`, `Angular` or plain js.
+* Supports metalanguages: `typescript`, `coffeescript`, `sass`, `scss`, `less` and `pug`.
+* No configuration is required.
+* Start or Stop server by a single click from status bar or touch bar.
+* Hot Key control.
+* `HTTP2/HTTPS` support.
+* Customizable preferred Port Number and/or default browser.
+* Support for any browser _(Eg: Firefox Nightly)_ using advance Command Line.
+* Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_).
+* Remote Connect through WLAN (E.g.: Connect with mobile)
+* Multi-root workspace supported.
+
 ## Shortcuts to Start/Stop Server
 
 1. Open a project and click to `Go Live` from the status bar to turn the server on/off. 
@@ -22,22 +36,12 @@
 3. Open a project file and right-click on the editor and  click on `Serve project`.
 ![Edit Menu Option Preview](./images/screen/hq-editor-menu.png)
 
-4. Hit `(alt+H, alt+O)` to Open the Server and `(alt+H, alt+C)` to Stop the server (You can change the shortcut form keybinding). *[On MAC, `cmd+H, cmd+O` and `cmd+H, cmd+C`]*
+4. Open a project and start/stop server from a touchbar.
+![Touchbar Preview](./images/screen/hq-touchbar.png)
 
-5. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server or type `HQ Live Server: Stop Server` to stop a server.
+5. Hit `(alt+H, alt+O)` to Open the Server and `(alt+H, alt+C)` to Stop the server (You can change the shortcut form keybinding). *[On MAC, `cmd+H, cmd+O` and `cmd+H, cmd+C`]*
 
-
-## Features
-* A Quick [Development Live Server](https://hqjs.org) with live browser reload.
-* Quick start with any framework: Polymer, Svelte, Vue, React, Angular or plain js.
-* No configuration is required.
-* Start or Stop server by a single click from status bar.
-* Hot Key control.
-* Customizable preferred Port Number and/or default browser.
-* Support for any browser _(Eg: Firefox Nightly)_ using advance Command Line.
-* Support for Chrome Debugging Attachment (_[More Info](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)_).
-* Remote Connect through WLAN (E.g.: Connect with mobile)
-* Multi-root workspace supported.
+6. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server or type `HQ Live Server: Stop Server` to stop a server.
 
 ## Installation
 Open VSCode and type `ctrl+P`, type `ext install hqjs.hq-live-server`.
@@ -56,6 +60,10 @@ Open VSCode and type `ctrl+P`, type `ext install hqjs.hq-live-server`.
 * Do I need to configure webpack or babel to start development?
   
   No, you can press `Go Live` button and start development immediatly. Extension will take care of everything else.
+
+* How to run server in `HTTP2/HTTPS` mode?
+
+  Create pair of certificate and a key in `.pem` format and put them somewhere inside your project. Server will automatically recognise them and start in HTTP2/HTTPS mode. For generating self signed certificates check this [tool](https://github.com/FiloSottile/mkcert).
 
 ## Settings
 * **`hqServer.defaultPort`:** Preferred Port Number for your Live Server.
