@@ -2,8 +2,7 @@
 
 💫 **One tool to rule them all**
 
-[![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/hqjs.hq-live-server.svg?style=flat-square&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server) [![Total Installs](https://img.shields.io/vscode-marketplace/d/hqjs.hq-live-server.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/hqjs.hq-live-server.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server)  
-[![Travis branch](https://img.shields.io/travis/hqjs/vscode-hq-live-server/master.svg?style=flat-square&label=travis%20branch)](https://travis-ci.org/hqjs/vscode-hq-live-server) [![Appveyor branch](https://img.shields.io/appveyor/ci/hqjs/vscode-hq-live-server.svg?style=flat-square&label=appveyor%20branch)](https://ci.appveyor.com/project/hqjs/vscode-hq-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/hqjs/vscode-hq-live-server/)
+[![VSCode Marketplace](https://img.shields.io/vscode-marketplace/v/hqjs.hq-live-server.svg?style=flat-square&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server) [![Total Installs](https://img.shields.io/vscode-marketplace/d/hqjs.hq-live-server.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server) [![Avarage Rating](https://img.shields.io/vscode-marketplace/r/hqjs.hq-live-server.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=hqjs.hq-live-server) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/hqjs/vscode-hq-live-server/)
 <br>
 
 **Launch a local development server with live reload feature for static & dynamic pages.**
@@ -16,7 +15,8 @@
 * Quick start with any framework: `Polymer`, `Svelte`, `Vue`, `React`, `Angular` or plain js.
 * Supports metalanguages: `typescript`, `coffeescript`, `sass`, `scss`, `less` and `pug`.
 * No configuration is required.
-* Start or Stop server by a single click from status bar or touch bar.
+* Production build with a single click.
+* Start or Stop server by just a click from status bar or touch bar.
 * Hot Key control.
 * `HTTP2/HTTPS` support.
 * Customizable preferred Port Number and/or default browser.
@@ -25,9 +25,9 @@
 * Remote Connect through WLAN (E.g.: Connect with mobile)
 * Multi-root workspace supported.
 
-## Shortcuts to Start/Stop Server
+## Shortcuts to Build and Start/Stop Server
 
-1. Open a project and click to `Go Live` from the status bar to turn the server on/off. 
+1. Open a project and click to `Go Live` from the status bar to turn the server on/off. Click `Build` button to make a production build.
 ![Go Live Control Preview](./images/screen/hq-statusbar.png)
 
 2. Right click on a project file from Explorer Window and click on `Serve project`.
@@ -36,15 +36,21 @@
 3. Open a project file and right-click on the editor and  click on `Serve project`.
 ![Edit Menu Option Preview](./images/screen/hq-editor-menu.png)
 
-4. Open a project and start/stop server from a touchbar.
+4. Open a project and build it or start/stop server from a touchbar.
 ![Touchbar Preview](./images/screen/hq-touchbar.png)
 
-5. Hit `(alt+H, alt+O)` to Open the Server and `(alt+H, alt+C)` to Stop the server (You can change the shortcut form keybinding). *[On MAC, `cmd+H, cmd+O` and `cmd+H, cmd+C`]*
+5. Hit `(alt+H, alt+O)` to Open the Server, `(alt+H, alt+C)` to Stop the server and `(alt+H, alt+B)` to Build the Project (You can change the shortcut form keybinding). *[On MAC, `cmd+H, cmd+O`, `cmd+H, cmd+C` and `cmd+H, cmd+B`]*
 
-6. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server or type `HQ Live Server: Stop Server` to stop a server.
+6. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server, type `HQ Live Server: Stop Server` to stop a server or `HQ Live Server: Build project` to make a production build.
 
 ## Installation
 Open VSCode and type `ctrl+P`, type `ext install hqjs.hq-live-server`.
+
+Note that you should have `nodejs >= 12.10.0` installed as default in your system. You can do it with [nvm](https://github.com/nvm-sh/nvm)
+```sh
+nvm i 12
+nvm alias default 12
+```
 
 ## FAQs
 * How to access the server from Mobile?
@@ -60,6 +66,11 @@ Open VSCode and type `ctrl+P`, type `ext install hqjs.hq-live-server`.
 * Do I need to configure webpack or babel to start development?
   
   No, you can press `Go Live` button and start development immediatly. Extension will take care of everything else.
+
+* Can I create production build without any configuration?
+
+  Yes, you can press `Build` button and production build will be created
+  in a `dist` folder (please, note: all previous content of `dist` folder will be erased).
 
 * How to run server in `HTTP2/HTTPS` mode?
 

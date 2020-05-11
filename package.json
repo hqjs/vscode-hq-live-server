@@ -41,19 +41,31 @@
   "contributes": {
     "commands": [
       {
+        "command": "extension.hqServer.start",
+        "title": "Serve project",
+        "category": "HQ Live Server",
+        "icon": "./images/broadcast.png"
+      },
+      {
         "command": "extension.hqServer.stop",
         "title": "Stop server",
         "category": "HQ Live Server",
         "icon": "./images/zap.png"
       },
       {
-        "command": "extension.hqServer.start",
-        "title": "Serve project",
+        "command": "extension.hqServer.build",
+        "title": "Build project",
         "category": "HQ Live Server",
-        "icon": "./images/broadcast.png"
+        "icon": "./images/package.png"
       }
     ],
     "keybindings": [
+      {
+        "command": "extension.hqServer.start",
+        "key": "alt+H alt+O",
+        "when": "editorTextFocus",
+        "mac": "cmd+H cmd+O"
+      },
       {
         "command": "extension.hqServer.stop",
         "key": "alt+H alt+C",
@@ -61,20 +73,24 @@
         "mac": "cmd+H cmd+C"
       },
       {
-        "command": "extension.hqServer.start",
-        "key": "alt+H alt+O",
+        "command": "extension.hqServer.build",
+        "key": "alt+H alt+B",
         "when": "editorTextFocus",
-        "mac": "cmd+H cmd+O"
+        "mac": "cmd+H cmd+B"
       }
     ],
     "menus": {
       "editor/context": [
         {
+          "command": "extension.hqServer.start",
+          "group": "hqGroup@hqServer"
+        },
+        {
           "command": "extension.hqServer.stop",
           "group": "hqGroup@hqServer"
         },
         {
-          "command": "extension.hqServer.start",
+          "command": "extension.hqServer.build",
           "group": "hqGroup@hqServer"
         }
       ],
@@ -86,6 +102,10 @@
         {
           "command": "extension.hqServer.stop",
           "group": "navigation@-HQServer"
+        },
+        {
+          "command": "extension.hqServer.build",
+          "group": "navigation@-HQServer"
         }
       ],
       "touchBar": [
@@ -95,6 +115,10 @@
         },
         {
           "command": "extension.hqServer.stop",
+          "group": "editing"
+        },
+        {
+          "command": "extension.hqServer.build",
           "group": "editing"
         }
       ]
@@ -163,19 +187,19 @@
     "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
-    "@hqjs/hq": "~0.0.17",
+    "@hqjs/hq": "~0.0.20",
     "open": "^7.0.3",
-    "sass": "^1.26.3",
+    "sass": "^1.26.5",
     "vsls": "^1.0.1830"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^12.12.31",
+    "@types/node": "^12.10.0",
     "@types/vscode": "^1.36.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "glob": "^7.1.6",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "vscode-test": "^1.3.0"
   }
 }
