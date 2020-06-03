@@ -57,6 +57,12 @@
         "title": "Build project",
         "category": "HQ Live Server",
         "icon": "./images/package.png"
+      },
+      {
+        "command": "extension.hqServer.buildResource",
+        "title": "Build resource",
+        "category": "HQ Live Server",
+        "icon": "./images/package.png"
       }
     ],
     "keybindings": [
@@ -77,6 +83,12 @@
         "key": "alt+H alt+B",
         "when": "editorTextFocus",
         "mac": "cmd+H cmd+B"
+      },
+      {
+        "command": "extension.hqServer.buildResource",
+        "key": "alt+H alt+R",
+        "when": "editorTextFocus",
+        "mac": "cmd+H cmd+R"
       }
     ],
     "menus": {
@@ -187,9 +199,9 @@
     "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
-    "@hqjs/hq": "~0.0.20",
-    "open": "^7.0.3",
-    "sass": "^1.26.5",
+    "@hqjs/hq": "~0.0.21",
+    "open": "^7.0.4",
+    "sass": "^1.26.7",
     "vsls": "^1.0.1830"
   },
   "devDependencies": {
@@ -197,9 +209,9 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^12.10.0",
     "@types/vscode": "^1.36.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "glob": "^7.1.6",
-    "mocha": "^7.1.2",
-    "vscode-test": "^1.3.0"
+    "mocha": "^7.2.0",
+    "vscode-test": "^1.4.0"
   }
 }

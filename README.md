@@ -39,9 +39,9 @@
 4. Open a project and build it or start/stop server from a touchbar.
 ![Touchbar Preview](./images/screen/hq-touchbar.png)
 
-5. Hit `(alt+H, alt+O)` to Open the Server, `(alt+H, alt+C)` to Stop the server and `(alt+H, alt+B)` to Build the Project (You can change the shortcut form keybinding). *[On MAC, `cmd+H, cmd+O`, `cmd+H, cmd+C` and `cmd+H, cmd+B`]*
+5. Hit `(alt+H, alt+O)` to Open the Server, `(alt+H, alt+C)` to Stop the server `(alt+H, alt+B)` to Build the Project and `(alt+H, alt+R)` to Build specific resource (You can change the shortcut form keybinding) *[On MAC, `cmd+H, cmd+O`, `cmd+H, cmd+C` and `cmd+H, cmd+B`]*
 
-6. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server, type `HQ Live Server: Stop Server` to stop a server or `HQ Live Server: Build project` to make a production build.
+6. Open the Command Pallete by pressing `F1` or `ctrl+shift+P` and type `HQ Live Server: Serve project ` to start a server, type `HQ Live Server: Stop Server` to stop a server, `HQ Live Server: Build project` to make a production build or `HQ Live Server: Build resource` to make a production build of specific resource.
 
 ## Installation
 Open VSCode and type `ctrl+P`, type `ext install hqjs.hq-live-server`.

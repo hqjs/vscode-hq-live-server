@@ -22,6 +22,12 @@ exports.activate = context => {
     }));
 
   context.subscriptions.push(commands
+    .registerCommand('extension.hqServer.buildResource', async () => {
+      await workspace.saveAll();
+      serverController.start('build', true);
+    }));
+
+  context.subscriptions.push(commands
     .registerCommand('extension.hqServer.noop', () => {}));
 
 

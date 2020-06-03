@@ -4,6 +4,7 @@ const { openBrowser } = require('./open');
 const path = require('path');
 const { spawn } = require('child_process');
 const { LiveShareController } = require('./live-share-controller');
+const { pickFile } = require('./file-picker');
 const StatusbarUi = require('./statusbar-ui');
 
 /* eslint-disable no-magic-numbers */
@@ -34,7 +35,7 @@ exports.ServerController = class ServerController {
     }
   }
 
-  async start(arg) {
+  async start(arg, resource) {
     const { workspaceFolders } = workspace;
     if (!workspaceFolders) {
       return window.showErrorMessage('Open a folder or workspace... (File -> Open)');
@@ -48,10 +49,16 @@ exports.ServerController = class ServerController {
     if (!activeProject) return StatusbarUi.disable();
 
     // if server is already running for this project, just open preview in a browser
-    if (this.servers.has(activeProject.uri.fsPath)) {
+    if (arg !== 'build' && this.servers.has(activeProject.uri.fsPath)) {
       const { url } = this.servers.get(activeProject.uri.fsPath);
       await openBrowser(url);
       return null;
+    }
+
+    // if it is a build resource command pick a resource
+    let resourceName;
+    if (arg === 'build' && resource) {
+      resourceName = await pickFile(activeProject);
     }
 
     // otherwise start new server
@@ -87,9 +94,12 @@ exports.ServerController = class ServerController {
 
       if (jsModules) args.push('--experimental-modules');
 
+      const hqArgs = [ ...args, path.join(__dirname, './run.mjs'), projectPath, defaultPort, arg ];
+      if (resource) hqArgs.push(resourceName);
+
       const hq = spawn(
         'node',
-        [ ...args, path.join(__dirname, './run.mjs'), projectPath, defaultPort, arg ],
+        hqArgs,
         {
           cwd: projectPath,
           stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ],
