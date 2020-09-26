@@ -199,7 +199,7 @@
     "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
-    "@hqjs/hq": "~0.0.23",
+    "@hqjs/hq": "~0.0.26",
     "open": "^7.2.1",
     "sass": "^1.26.11",
     "vsls": "^1.0.2594"

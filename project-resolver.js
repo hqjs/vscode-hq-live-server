@@ -10,7 +10,7 @@ exports.getProject = workspaceFolders => {
       .find(project => activeFileName.startsWith(`${project.uri.fsPath}${path.sep}`));
     if (!activeProject) {
       window.showErrorMessage(`Could not start HQ Live Server:
-        Selected file ${activeFileName} does not belong to any projects`);
+        Selected file ${activeFileName} does not belong to any project`);
       return null;
     }
     return activeProject;
