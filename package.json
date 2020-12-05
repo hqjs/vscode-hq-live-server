@@ -3,7 +3,7 @@
   "displayName": "HQ Live Server",
   "description": "Lightning fast, zero configuration, web application development server with livereload",
   "publisher": "hqjs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": {
     "name": "HQJS",
     "email": "hqjs.org@gmail.com",
