@@ -199,7 +199,7 @@
     "postinstall": "node ./patch-sass.js && npm remove node-sass"
   },
   "dependencies": {
-    "@hqjs/hq": "~0.0.30",
+    "@hqjs/hq": "~0.0.31",
     "open": "^7.3.0",
     "sass": "^1.30.0",
     "vsls": "^1.0.3015"
@@ -209,7 +209,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^12.10.0",
     "@types/vscode": "^1.36.0",
-    "eslint": "^7.15.0",
+    "eslint": "^7.16.0",
     "glob": "^7.1.6",
     "mocha": "^7.2.0",
     "vscode-test": "^1.4.1"
